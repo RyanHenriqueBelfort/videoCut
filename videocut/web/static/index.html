@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VideoCut</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23ff3d77'/><path d='M10 9l12 14M22 9L10 23' stroke='white' stroke-width='3' stroke-linecap='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">✂</span>
+      <span>VideoCut</span>
+    </div>
+    <div id="status" class="status"></div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <form id="new-job" class="card new-job">
+        <h2>Novo vídeo</h2>
+        <input id="source" type="text" placeholder="Link do YouTube ou caminho do arquivo" autocomplete="off">
+        <div id="drop" class="drop">
+          <input id="file" type="file" accept="video/*,audio/*" hidden>
+          <span id="drop-label">Arraste um vídeo aqui ou <button type="button" class="link" id="pick">escolha um arquivo</button></span>
+        </div>
+        <div class="row">
+          <label class="inline">Cortes
+            <input id="max-clips" type="number" min="1" max="20" value="5">
+          </label>
+        </div>
+        <textarea id="instructions" rows="2" placeholder="Instruções para a IA (opcional). Ex.: foque nos momentos engraçados"></textarea>
+        <button class="btn primary block" type="submit" id="start-btn">Começar</button>
+      </form>
+
+      <div class="jobs-head">
+        <h3>Vídeos</h3>
+        <button class="icon-btn" id="refresh-jobs" title="Atualizar">⟳</button>
+      </div>
+      <ul id="jobs" class="jobs"></ul>
+    </aside>
+
+    <main id="main" class="main"></main>
+  </div>
+
+  <section id="tasks" class="tasks collapsed">
+    <button id="tasks-toggle" class="tasks-toggle"></button>
+    <div id="tasks-list" class="tasks-list"></div>
+  </section>
+
+  <dialog id="log-dialog" class="dialog">
+    <header><h3 id="log-title"></h3><button class="icon-btn" data-close>✕</button></header>
+    <pre id="log-body"></pre>
+  </dialog>
+
+  <div id="toasts" class="toasts"></div>
+  <script src="app.js"></script>
+</body>
+</html>
